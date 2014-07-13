@@ -31,7 +31,11 @@ source /etc/mailinabox.conf # load global vars
 
 # Install packages.
 
-apt_install postfix postgrey postfix-pcre
+apt_install postfix postfix-pcre
+
+# Disable greylisting for now.  Instant gratification matters more than
+# fighting spam at this point.
+# apt_install postgrey
 
 # Basic Settings
 
