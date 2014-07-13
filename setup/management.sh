@@ -3,7 +3,7 @@
 source setup/functions.sh
 
 apt_install python3-flask links duplicity libyaml-dev python3-dnspython
-pip3 install rtyaml
+pip3 install -q rtyaml
 
 # Create a backup directory and a random key for encrypting backups.
 mkdir -p $STORAGE_ROOT/backup
