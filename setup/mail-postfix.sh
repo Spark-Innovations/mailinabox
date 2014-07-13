@@ -34,7 +34,7 @@ source /etc/mailinabox.conf # load global vars
 apt_install postfix postfix-pcre
 
 # Disable greylisting for now.  Instant gratification matters more than
-# fighting spam at this point.
+# fighting spam at this point.  Also see additional tweak below
 # apt_install postgrey
 
 # Basic Settings
@@ -128,7 +128,10 @@ tools/editconf.py /etc/postfix/main.cf \
 # "450 4.7.1 Client host rejected: Service unavailable". This is a retry code, so the mail doesn't properly bounce.
 tools/editconf.py /etc/postfix/main.cf \
 	smtpd_sender_restrictions="reject_non_fqdn_sender,reject_unknown_sender_domain,reject_rhsbl_sender dbl.spamhaus.org" \
-	smtpd_recipient_restrictions=permit_sasl_authenticated,permit_mynetworks,"reject_rbl_client zen.spamhaus.org","check_policy_service inet:127.0.0.1:10023"
+	smtpd_recipient_restrictions=permit_sasl_authenticated,permit_mynetworks,"reject_rbl_client zen.spamhaus.org"
+
+# Disable postgrey
+# ,"check_policy_service inet:127.0.0.1:10023"
 
 # Increase the message size limit from 10MB to 128MB.
 tools/editconf.py /etc/postfix/main.cf \
